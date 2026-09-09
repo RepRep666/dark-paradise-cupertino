@@ -7,10 +7,6 @@ body {
   --radius-m: calc(12px * var(--radius-modifier));
   --radius-l: calc(20px * var(--radius-modifier));
   --radius-xl: calc(28px * var(--radius-modifier));
-  --clickable-icon-radius: var(--radius-s) !important;
-  --input-radius: var(--radius-s) !important;
-  --search-input-radius: var(--input-radius) !important;
-  --search-input-corner-shape: var(--corner-shape);
 
   --background-modifier-form-field: var(--interactive-normal);
 
@@ -20,22 +16,12 @@ body {
 .theme-light {
   --input-shadow: inset 0 0 0 var(--input-border-width) var(--background-modifier-border);
   --input-shadow-hover: inset 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
-
-  &.mod-macos {
-    --interactive-normal: var(--color-base-00);
-    --interactive-hover: var(--color-base-10);
-  }
 }
 .theme-dark {
-  --input-shadow: inset 0 0 0 var(--input-border-width) var(--background-modifier-border);
+  --input-shadow: inset 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
   --input-shadow-hover: inset 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
 
   --background-modifier-form-field: var(--interactive-normal);
-
-  &.mod-macos {
-    --interactive-normal: var(--color-base-30);
-    --interactive-hover: var(--color-base-35);
-  }
 }
 
 // Button

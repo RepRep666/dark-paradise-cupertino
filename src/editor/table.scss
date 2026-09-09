@@ -2,9 +2,6 @@
   body {
     --table-text-size: var(--font-small);
 
-    --table-border-color: var(--background-modifier-border);
-    --table-border-width: var(--border-width);
-
     --table-add-button-border-width: 0;
     --table-header-border-color: transparent;
 
@@ -18,10 +15,17 @@
   :root table {
     border-collapse: separate;
     border-spacing: 0;
-    word-break: break-word;
   }
 
-  div:is(.markdown-preview-view, .is-live-preview) {
+  blockquote,
+  .callout,
+  .el-table,
+  .cm-table-widget,
+  .block-language-dataview,
+  .block-language-dataviewjs,
+  .block-language-datacorejsx {
+    --table-border-color: var(--background-modifier-border);
+
     table {
       position: relative;
 
@@ -49,15 +53,11 @@
         border-radius: var(--radius-s);
       }
 
-      > tbody > tr:not(:last-child) > th,
       > tbody > tr:not(:last-child) > td {
         border-bottom: none;
       }
-    }
 
-    div:not([dir="rtl"]) > table:not([dir="rtl"]) {
       > thead > tr > th:not(:last-child),
-      > tbody > tr > th:not(:last-child),
       > tbody > tr > td:not(:last-child) {
         border-right: none;
       }
@@ -78,31 +78,29 @@
       > :is(thead, tbody) > tr:last-child > :is(th, td):last-child .table-cell-wrapper {
         border-bottom-right-radius: var(--radius-s);
       }
-    }
 
-    div[dir="rtl"] > table,
-    table[dir="rtl"] {
-      > thead > tr > th:not(:last-child),
-      > tbody > tr > th:not(:last-child),
-      > tbody > tr > td:not(:last-child) {
-        border-left: none;
-      }
+      &[dir="rtl"] {
+        > thead > tr > th:not(:last-child),
+        > tbody > tr > td:not(:last-child) {
+          border-left: none;
+        }
 
-      > :is(thead, tbody) > tr:first-child > :is(th, td):first-child,
-      > :is(thead, tbody) > tr:first-child > :is(th, td):first-child .table-cell-wrapper {
-        border-top-right-radius: var(--radius-s);
-      }
-      > :is(thead, tbody) > tr:first-child > :is(th, td):last-child,
-      > :is(thead, tbody) > tr:first-child > :is(th, td):last-child .table-cell-wrapper {
-        border-top-left-radius: var(--radius-s);
-      }
-      > :is(thead, tbody) > tr:last-child > :is(th, td):first-child,
-      > :is(thead, tbody) > tr:last-child > :is(th, td):first-child .table-cell-wrapper {
-        border-bottom-right-radius: var(--radius-s);
-      }
-      > :is(thead, tbody) > tr:last-child > :is(th, td):last-child,
-      > :is(thead, tbody) > tr:last-child > :is(th, td):last-child .table-cell-wrapper {
-        border-bottom-left-radius: var(--radius-s);
+        > :is(thead, tbody) > tr:first-child > :is(th, td):first-child,
+        > :is(thead, tbody) > tr:first-child > :is(th, td):first-child .table-cell-wrapper {
+          border-top-right-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:first-child > :is(th, td):last-child,
+        > :is(thead, tbody) > tr:first-child > :is(th, td):last-child .table-cell-wrapper {
+          border-top-left-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:last-child > :is(th, td):first-child,
+        > :is(thead, tbody) > tr:last-child > :is(th, td):first-child .table-cell-wrapper {
+          border-bottom-right-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:last-child > :is(th, td):last-child,
+        > :is(thead, tbody) > tr:last-child > :is(th, td):last-child .table-cell-wrapper {
+          border-bottom-left-radius: var(--radius-s);
+        }
       }
     }
   }
@@ -143,7 +141,7 @@
     }
 
     &.table-view-table > tbody > tr:not(:only-child) > td {
-      max-width: 20rem;
+      max-width: 20em;
     }
 
     &.dataview-error-box {

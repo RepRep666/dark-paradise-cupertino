@@ -1,2 +1,8 @@
-.vscode/*
+# Local restore points kept outside a future release package.
+theme.css.before-*
+theme.css.scriptorium-*
+*.tmp
+
+# OS/editor noise.
 .DS_Store
+Thumbs.db

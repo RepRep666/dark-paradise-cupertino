@@ -1,27 +1,29 @@
 body:is(.mod-macos, .adaptive-mode-off) {
   --background-modifier-message: var(--modal-background);
-  --modal-background: hsl(from var(--background-secondary) h s l / 75%) !important;
-  --menu-background: var(--blur-background);
+  --modal-background: rgb(from var(--background-secondary) r g b / 75%);
 
   &.is-translucent {
-    --modal-background: var(--background-primary) !important;
+    --modal-background: var(--background-primary);
   }
 
+  .menu,
   .prompt,
   .modal:not(.mod-sidebar-layout) {
     backdrop-filter: var(--blur-l);
+    border: none;
     background-color: var(--modal-background);
   }
-  .menu,
   .suggestion-container,
   .popover {
     backdrop-filter: var(--blur-m);
-    background-color: var(--menu-background);
+    border: none;
+    background-color: var(--modal-background);
   }
   .cm-tooltip,
   .notice {
-    backdrop-filter: var(--blur-s);
-    background-color: var(--blur-background);
+    backdrop-filter: var(--raised-blur);
+    border: none;
+    background-color: var(--modal-background);
   }
 }
 
@@ -38,6 +40,8 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
     .menu-item,
     .suggestion-item {
       padding: calc(4px * var(--density-modifier)) 12px;
+      align-items: center;
+      display: flex;
     }
     .suggestion-item {
       min-height: 32px;
@@ -90,6 +94,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
   }
 
   .menu .menu-item {
+    min-height: 48px;
     font-size: var(--font-ui-medium);
   }
   .menu .menu-item::after {
@@ -105,7 +110,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
     .menu-item-title::after {
       position: absolute;
       inset: auto 0 -14px;
-      background-color: hsl(from var(--mono-100) h s l / 0.1);
+      background-color: rgba(var(--mono-rgb-100), 0.1);
       height: var(--border-width);
       content: "";
     }
@@ -175,7 +180,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   .modal-setting-back-button,
-  .modal-header-button {
+  .modal-close-button {
     --icon-size: var(--icon-xl);
     padding: 6px;
   }
@@ -194,7 +199,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
     width: calc(100vw - 16px) !important;
     left: 0 !important;
 
-    .modal-header-button {
+    .modal-close-button {
       top: 16px !important;
       inset-inline-end: 16px !important;
     }
@@ -216,16 +221,10 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
 // Notice & Tooltip
 body:is(.mod-macos, .adaptive-mode-off) {
   .notice {
+    box-shadow: var(--shadow-l);
     border-radius: var(--radius-m);
     padding: calc(16px * var(--density-modifier)) var(--side-padding);
-    color: var(--text-normal);
-    transition: var(--anim-duration-slow) var(--anim-motion-baseline) !important;
-  }
-
-  .notice[style^="opacity: 0"] {
-    margin-top: unset !important;
-    transform: scale(1.1);
-    filter: blur(8px);
+    color: var(--text-muted);
   }
 
   .tooltip {
@@ -241,21 +240,15 @@ body:is(.mod-macos, .adaptive-mode-off) {
 }
 
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .notice {
-  box-shadow: var(--shadow-l);
-
-  &:last-child {
-    @starting-style {
-      transform: translateX(50%) !important;
-      filter: blur(8px);
-      opacity: 0;
-    }
-  }
+  transition: var(--anim-duration-moderate) !important;
 }
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
+    transition: var(--anim-duration-slow) var(--anim-motion-baseline) !important;
+
     @starting-style {
       transform: translateY(-50%) scaleX(0.5) !important;
       filter: blur(4px);

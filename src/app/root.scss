@@ -212,33 +212,22 @@ body.reduce-motion {
   --anim-speed-modifier: 0 !important;
 
   &.is-mobile {
+    --mobile-sidebar-width: 90vw;
+
+    .workspace-drawer,
+    .workspace-split,
     .mobile-tab-switcher,
     .menu,
     .suggestion-bg,
     .modal,
-    .modal-bg {
+    .modal-bg,
+    .mobile-navbar {
+      transform: none !important;
       transition: none !important;
-    }
-  }
-}
 
-// Version check
-@supports not (interpolate-size: allow-keywords) {
-  body:not(.is-mobile).obsidian-app.obsidian-app.obsidian-app {
-    --modal-background: var(--background-secondary) !important;
-  }
-  body:not(.is-mobile):not(.is-popout-window) .mod-root::before {
-    content: "Cupertino requires a newer Obsidian installer. Download and run the latest installer from obsidian.md to remove this message.";
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    z-index: var(--layer-cover);
-    inset: auto 0 0;
-    padding: 16px 48px;
-    background-color: var(--background-secondary);
-    color: var(--text-muted);
-    font-size: var(--font-ui-medium);
-    white-space: pre-wrap;
+      @starting-style {
+        opacity: 0 !important;
+      }
+    }
   }
 }

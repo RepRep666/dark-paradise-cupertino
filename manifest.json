@@ -1,8 +1,12 @@
 {
-  "name": "Cupertino",
-  "version": "3.2.12",
+  "name": "Dark Paradise Cupertino",
+  "version": "2.0.0",
   "minAppVersion": "1.13.4",
-  "author": "Alexis C",
-  "authorUrl": "https://github.com/aaaaalexis",
-  "fundingUrl": "https://www.buymeacoffee.com/sevenaxis"
+  "author": "Repo",
+  "authorUrl": "https://github.com/RepRep666",
+  "modes": [
+    "dark",
+    "light"
+  ],
+  "description": "A cozy medieval violet Obsidian theme combining Cupertino's fluid interface with Dark Paradise's purple palette and Violet Codex reading surface."
 }

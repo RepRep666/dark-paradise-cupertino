@@ -11,11 +11,11 @@
     font-size: var(--callout-size);
 
     .callout-content > *:first-child {
-      margin-block-start: 8px;
+      margin-top: 8px;
     }
 
     .callout-content > *:last-child {
-      margin-block-end: 0 !important;
+      margin-bottom: 0 !important;
     }
 
     pre {
@@ -34,6 +34,7 @@
 
     .callout-title-inner {
       --p-spacing: 0;
+      color: color-mix(in srgb, rgb(var(--callout-color)), var(--text-normal) 15%);
     }
 
     .callout-fold {
@@ -47,8 +48,8 @@
 
   .callout:not([data-callout]) {
     --callout-color: var(--color-accent);
-    background-color: hsl(from var(--color-accent) h s l / 0.15);
-    border-color: hsl(from var(--color-accent) h s l / var(--callout-border-opacity));
+    background-color: hsla(var(--color-accent-hsl), 0.15);
+    border-color: hsla(var(--color-accent-hsl), var(--callout-border-opacity));
 
     .callout-title {
       color: var(--callout-color);
@@ -58,6 +59,6 @@
   // Callout: Tactile
   body:is(.mod-macos, .adaptive-mode-off) .callout:not([data-callout="note-toolbar"]) {
     box-shadow: var(--shadow-tactile);
-    background: linear-gradient(hsl(from var(--callout-color) h s l / 0.1), hsl(from var(--callout-color) h s l / 0.175));
+    background: linear-gradient(rgba(var(--callout-color), 0.1), rgba(var(--callout-color), 0.15));
   }
 }

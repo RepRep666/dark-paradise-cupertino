@@ -26,9 +26,9 @@ body.is-mobile {
   --touch-size-l: 48px;
   --touch-size-xl: 52px;
 
-  --border-width: 0.5px;
-  --divider-width: 0.5px;
-  --tab-outline-width: 1px;
+  --border-width: 1pt;
+  --divider-width: 1pt;
+  --tab-outline-width: 1pt;
 
   --file-margins-y: 8px;
   --file-margins-x: 24px;
@@ -45,12 +45,10 @@ body.is-mobile {
 
   --input-border-width-focus: 0;
 
-  --navbar-max-width: auto !important;
+  --navbar-width: 100%;
+  --navbar-max-width: unset;
   --navbar-bottom-offset: max(var(--safe-area-inset-bottom), var(--safe-area-inset-side));
   --navbar-side-offset: min(var(--navbar-bottom-offset), 32px);
-
-  --mobile-toolbar-height: var(--touch-size-m);
-  --toolbar-option-width: var(--mobile-toolbar-height);
 
   --safe-area-inset-side: 16px;
 
@@ -310,27 +308,7 @@ body.is-phone {
     padding-top: 16px !important;
 
     // cubic-bezier(0.4, 0, 0.6, 1)
-    mask: linear-gradient(
-      to top,
-      hsla(0, 0%, 0%, 0) 0px,
-      hsla(0, 0%, 0%, 0.013) 5px,
-      hsla(0, 0%, 0%, 0.049) 10px,
-      hsla(0, 0%, 0%, 0.104) 14px,
-      hsla(0, 0%, 0%, 0.175) 18px,
-      hsla(0, 0%, 0%, 0.259) 22px,
-      hsla(0, 0%, 0%, 0.352) 26px,
-      hsla(0, 0%, 0%, 0.45) 30px,
-      hsla(0, 0%, 0%, 0.55) 34px,
-      hsla(0, 0%, 0%, 0.648) 38px,
-      hsla(0, 0%, 0%, 0.741) 42px,
-      hsla(0, 0%, 0%, 0.825) 46px,
-      hsla(0, 0%, 0%, 0.896) 50px,
-      hsla(0, 0%, 0%, 0.951) 54px,
-      hsla(0, 0%, 0%, 0.987) 59px,
-      hsl(0, 0%, 0%) 64px,
-      black calc(100% - 16px),
-      transparent
-    );
+    mask: linear-gradient(to top, hsla(0, 0%, 0%, 0) 0px, hsla(0, 0%, 0%, 0.013) 5px, hsla(0, 0%, 0%, 0.049) 10px, hsla(0, 0%, 0%, 0.104) 14px, hsla(0, 0%, 0%, 0.175) 18px, hsla(0, 0%, 0%, 0.259) 22px, hsla(0, 0%, 0%, 0.352) 26px, hsla(0, 0%, 0%, 0.45) 30px, hsla(0, 0%, 0%, 0.55) 34px, hsla(0, 0%, 0%, 0.648) 38px, hsla(0, 0%, 0%, 0.741) 42px, hsla(0, 0%, 0%, 0.825) 46px, hsla(0, 0%, 0%, 0.896) 50px, hsla(0, 0%, 0%, 0.951) 54px, hsla(0, 0%, 0%, 0.987) 59px, hsl(0, 0%, 0%) 64px, black calc(100% - 16px), transparent);
   }
   .workspace-drawer-inner {
     padding-top: calc(var(--safe-area-inset-top) + 32px);
@@ -371,7 +349,7 @@ body.is-phone {
     .mobile-navbar,
     &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header .view-actions button:nth-last-child(2) {
       transform: none;
-      margin-bottom: 0;
+      bottom: calc(-1 * var(--navbar-bottom-offset));
     }
     .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content::before,
     .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content::after {
@@ -402,9 +380,7 @@ body.is-phone {
       height: var(--view-bottom-spacing);
     }
   }
-  &:not(html:where([style*="--keyboard-height: 0px"], :not([style*="--keyboard-height"])) body):not(.mod-toolbar-open)
-    .mod-root
-    .workspace-leaf-content[data-type="markdown"] {
+  &:not(html:where([style*="--keyboard-height: 0px"], :not([style*="--keyboard-height"])) body):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] {
     .view-actions button:nth-last-child(2) {
       opacity: 0;
       pointer-events: none;
@@ -422,14 +398,11 @@ body.is-phone {
     position: fixed;
     transition:
       var(--anim-duration-moderate) var(--anim-motion-baseline),
-      right 0s,
-      bottom 0s,
       height 0s,
       opacity 0s !important;
-    margin-right: var(--navbar-side-offset);
-    margin-bottom: var(--navbar-bottom-offset);
-    bottom: 0;
-    right: 0;
+    right: var(--navbar-side-offset);
+    bottom: var(--navbar-bottom-offset);
+    margin-bottom: 0;
     border-radius: 100%;
     width: var(--touch-size-l);
     height: var(--touch-size-l);
@@ -439,65 +412,39 @@ body.is-phone {
   &.mod-toolbar-open:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     width: var(--touch-size-m);
     height: var(--touch-size-m);
-    margin-right: var(--keyboard-spacing);
-    margin-bottom: var(--keyboard-spacing);
+    right: var(--keyboard-spacing);
+    bottom: var(--keyboard-spacing);
   }
-  &:not(.is-floating-nav):not(.mod-toolbar-open):not(.mode-switcher-off)
-    .mod-root
-    .workspace-leaf-content[data-type="markdown"]
-    .view-actions
-    button:nth-last-child(2) {
-    margin-right: 16px;
-    margin-bottom: 16px;
+  &:not(.is-floating-nav):not(.mode-switcher-off):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+    right: 16px;
+    bottom: 16px;
   }
-  &:not(.is-floating-nav):not(.mod-toolbar-open):not(.mode-switcher-off).auto-full-screen
-    .mod-root
-    .workspace-leaf-content[data-type="markdown"]
-    .view-actions
-    button:nth-last-child(2) {
-    margin-bottom: calc(var(--navbar-height) + 16px);
+  &:not(.is-floating-nav).auto-full-screen:not(.mode-switcher-off):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+    bottom: calc(var(--navbar-height) + 16px);
   }
-  &
-    > .app-container
-    > .horizontal-main-container:has(
-      .workspace
-        > .mod-root
-        > .workspace-tabs.mod-visible
-        > .workspace-tab-container
-        > .workspace-leaf.mod-active
-        > .workspace-leaf-content:not([data-type="markdown"])
-    )
-    .view-actions
-    button:nth-last-child(2) {
+  & > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content:not([data-type="markdown"])) .view-actions button:nth-last-child(2) {
     opacity: 0;
     pointer-events: none;
   }
 
   // Navigation bar
   &.is-floating-nav.mode-switcher-off .mobile-navbar,
-  &.is-floating-nav
-    > .app-container
-    > .horizontal-main-container:has(
-      .workspace
-        > .mod-root
-        > .workspace-tabs.mod-visible
-        > .workspace-tab-container
-        > .workspace-leaf.mod-active
-        > .workspace-leaf-content:not([data-type="markdown"])
-    )
-    ~ .mobile-navbar {
-    margin-right: var(--navbar-side-offset);
+  &.is-floating-nav > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content:not([data-type="markdown"])) ~ .mobile-navbar {
+    max-width: calc(100% - var(--navbar-side-offset) * 2);
   }
 
-  &.is-floating-nav .mobile-navbar {
-    width: auto;
-    margin: auto calc(8px + var(--touch-size-l) + var(--navbar-side-offset)) var(--navbar-bottom-offset) var(--navbar-side-offset);
+  .mobile-navbar {
+    width: 100%;
+    max-width: calc(100% - 8px - var(--touch-size-l) - var(--navbar-side-offset) * 2);
+    inset: auto var(--navbar-side-offset) var(--navbar-bottom-offset);
+    overflow: hidden;
     padding: 8px;
+    margin: 0;
     transition:
       var(--anim-duration-moderate) var(--anim-motion-baseline),
       background-color var(--anim-duration-moderate);
+    will-change: bottom;
   }
-
   .mobile-navbar-action {
     min-width: 0;
     margin-inline-start: 0;
@@ -511,39 +458,39 @@ body.is-phone {
   }
 
   &:not(.is-floating-nav) .mobile-navbar {
+    margin: 0 auto;
+    inset: auto 0 0;
+    box-shadow: none !important;
     border: none !important;
     background-color: var(--background-primary) !important;
-    transition: var(--anim-duration-moderate) !important;
+    padding: 0 8px var(--navbar-bottom-offset);
+    max-width: var(--navbar-max-width);
   }
 
   // Toolbar
-  &.mode-switcher-off.mod-toolbar-open .mobile-toolbar {
-    padding-right: var(--keyboard-spacing);
+  &.mode-switcher-off .mobile-toolbar {
+    right: var(--keyboard-spacing);
   }
 
-  &:not(.AT-row, .AT-multirow, .AT-column) {
-    &.mod-toolbar-open .mod-root .view-content {
-      margin-bottom: calc(var(--mobile-toolbar-height) + var(--keyboard-spacing));
-    }
-
-    .mobile-toolbar-spacer {
-      display: none;
-    }
-
-    .mobile-toolbar {
-      top: calc(100vh - var(--keyboard-height) - var(--mobile-toolbar-height) - var(--keyboard-spacing));
-      padding-left: var(--keyboard-spacing);
-      padding-bottom: var(--keyboard-spacing);
-      padding-right: calc(var(--keyboard-spacing) + var(--touch-size-m) + 4px);
-    }
-    .mobile-toolbar-options-container {
-      gap: 4px;
-      width: 100%;
-      margin: 0;
-    }
-    .mobile-toolbar-options-list {
-      padding: 0px;
-    }
+  &.mod-toolbar-open .mod-root .view-content {
+    margin-bottom: calc(var(--mobile-toolbar-height) + var(--keyboard-spacing));
+  }
+  .mobile-toolbar-spacer {
+    display: none;
+  }
+  .mobile-toolbar {
+    box-shadow: none;
+    top: auto;
+    bottom: var(--keyboard-spacing);
+    left: var(--keyboard-spacing);
+    right: calc(var(--keyboard-spacing) + var(--touch-size-m) + 4px);
+    width: auto;
+  }
+  .mobile-toolbar-options-container {
+    gap: 4px;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
   }
 }
 

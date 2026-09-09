@@ -10,7 +10,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
   --blur-m: blur(4px) saturate(1.5) brightness(1.025);
   --blur-l: blur(8px) saturate(1.5) brightness(1.025);
 
-  --clickable-icon-radius: 100vh !important;
+  --clickable-icon-radius: 100vh;
   --button-radius: var(--input-radius);
   --input-radius: var(--radius-s);
   --input-height: 24px;
@@ -74,8 +74,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
 
     --blur-background: rgba(255, 255, 255, 0.075);
 
-    --shadow-base:
-      inset 1px 1.5px 1px -1px rgba(255, 255, 255, 0.2), inset -1px -1.5px 1px -1px rgba(255, 255, 255, 0.15), inset 0 4px 16px rgba(255, 255, 255, 0.025);
+    --shadow-base: inset 1px 1.5px 1px -1px rgba(255, 255, 255, 0.2), inset -1px -1.5px 1px -1px rgba(255, 255, 255, 0.15), inset 0 4px 16px rgba(255, 255, 255, 0.025);
     --shadow-edges: 0 0 1px rgba(255, 255, 255, 0.3);
     --shadow-surface: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 1px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.2);
 
@@ -102,8 +101,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
     }
     .clickable-icon:not([aria-disabled="true"]):hover,
     .clickable-icon.has-active-menu,
-    .modal-close-button:hover,
-    .modal-header-button:hover {
+    .modal-close-button:hover {
       box-shadow: var(--shadow-xs);
       background-color: var(--raised-background);
     }
@@ -207,9 +205,9 @@ body:is(.mod-macos, .adaptive-mode-off) {
     --dropdown-padding-start: var(--side-padding);
   }
 
-  select::focus-visible,
-  .combobox-button::focus-visible,
-  .dropdown::focus-visible {
+  select:focus,
+  .combobox-button:focus,
+  .dropdown:focus {
     box-shadow: none;
   }
 
@@ -298,15 +296,6 @@ body:is(.mod-macos, .adaptive-mode-off) {
       height: fit-content;
       z-index: 1;
     }
-
-    .workspace-tab-header-status-container {
-      margin-left: -8px;
-    }
-    .workspace-tab-header-status-icon,
-    .workspace-tab-header-inner-close-button {
-      --icon-size: 12px;
-      color: var(--text-muted);
-    }
   }
 
   // Panel actions
@@ -349,8 +338,8 @@ body:is(.mod-macos, .adaptive-mode-off) {
   }
 
   &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"][data-mode="source"] .view-header .view-actions button:nth-last-child(2) {
-    background-color: rgb(from var(--interactive-accent) r g b / 95%);
-    color: oklch(from var(--interactive-accent) 0.95 c h);
+    background-color: var(--interactive-accent);
+    color: oklch(from var(--interactive-accent) calc(l + 0.25) c h);
     box-shadow: var(--shadow-xs);
   }
 

@@ -5,11 +5,11 @@ body:not(.banner-off) {
   --banner-image-inset: 8px;
   --banner-image-height: 320px;
   --banner-image-height-s: 240px;
-  --banner-image-radius: var(--radius-s);
   --banner-fade-height: 80px;
   --banner-icon-size: 3rem;
   --banner-mobile-offset: 0px;
 
+  // Mobile
   &:where(.is-mobile) {
     --banner-image-height: var(--banner-image-height-s);
 
@@ -19,9 +19,6 @@ body:not(.banner-off) {
     }
   }
 
-  &:not(.is-mobile):not(.show-view-header) {
-    --banner-image-inset: 0px;
-  }
   &:not(.is-phone) {
     --view-top-spacing-markdown: 0px;
   }
@@ -52,7 +49,7 @@ body:not(.banner-off) {
     }
   }
 
-  .mod-root .view-content:not(.pixel-banner, .has-banner) div:is(.markdown-preview-view, .is-live-preview) {
+  .mod-root .view-content:not(.pixel-banner) div:is(.markdown-preview-view, .is-live-preview) {
     // Spacing
     .markdown-preview-sizer,
     .cm-editor > .cm-scroller > .cm-sizer {
@@ -94,18 +91,13 @@ body:not(.banner-off) {
       img[alt="banner"]:not([contenteditable]) {
         position: absolute;
         inset: var(--view-top-spacing-markdown) var(--banner-image-inset) auto;
-        border-radius: var(--banner-image-radius);
+        border-radius: var(--banner-image-radius, var(--media-radius));
         width: stretch;
         height: var(--banner-image-height);
         overflow: hidden;
         object-fit: var(--banner-image-object-fit);
         line-height: 0;
         max-width: calc(100% - var(--banner-image-inset) * 2);
-        padding: 0;
-      }
-
-      .cm-line:has(.image-embed[alt="banner"]) {
-        position: static;
       }
 
       .image-embed[alt="banner"],
@@ -127,25 +119,7 @@ body:not(.banner-off) {
 
     // Banner image fade
     &.banner.banner-fade img[alt="banner"] {
-      mask: linear-gradient(
-        to bottom,
-        hsl(0, 0%, 0%) 0%,
-        hsla(0, 0%, 0%, 0.987) 14%,
-        hsla(0, 0%, 0%, 0.951) 26.2%,
-        hsla(0, 0%, 0%, 0.896) 36.8%,
-        hsla(0, 0%, 0%, 0.825) 45.9%,
-        hsla(0, 0%, 0%, 0.741) 53.7%,
-        hsla(0, 0%, 0%, 0.648) 60.4%,
-        hsla(0, 0%, 0%, 0.55) 66.2%,
-        hsla(0, 0%, 0%, 0.45) 71.2%,
-        hsla(0, 0%, 0%, 0.352) 75.6%,
-        hsla(0, 0%, 0%, 0.259) 79.6%,
-        hsla(0, 0%, 0%, 0.175) 83.4%,
-        hsla(0, 0%, 0%, 0.104) 87.2%,
-        hsla(0, 0%, 0%, 0.049) 91.1%,
-        hsla(0, 0%, 0%, 0.013) 95.3%,
-        hsla(0, 0%, 0%, 0) 100%
-      );
+      mask: linear-gradient(to bottom, hsl(0, 0%, 0%) 0%, hsla(0, 0%, 0%, 0.987) 14%, hsla(0, 0%, 0%, 0.951) 26.2%, hsla(0, 0%, 0%, 0.896) 36.8%, hsla(0, 0%, 0%, 0.825) 45.9%, hsla(0, 0%, 0%, 0.741) 53.7%, hsla(0, 0%, 0%, 0.648) 60.4%, hsla(0, 0%, 0%, 0.55) 66.2%, hsla(0, 0%, 0%, 0.45) 71.2%, hsla(0, 0%, 0%, 0.352) 75.6%, hsla(0, 0%, 0%, 0.259) 79.6%, hsla(0, 0%, 0%, 0.175) 83.4%, hsla(0, 0%, 0%, 0.104) 87.2%, hsla(0, 0%, 0%, 0.049) 91.1%, hsla(0, 0%, 0%, 0.013) 95.3%, hsla(0, 0%, 0%, 0) 100%);
     }
 
     // Banner icon

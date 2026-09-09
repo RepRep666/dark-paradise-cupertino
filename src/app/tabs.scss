@@ -2,7 +2,7 @@ body {
   --header-height: 48px;
   --tab-max-width: var(--tab-width);
 
-  --tab-radius: var(--radius-s) !important;
+  --tab-radius: var(--radius-s);
   --tab-radius-active: var(--tab-radius) var(--tab-radius) 0 0;
   --tab-curve: calc(var(--tab-radius) + 4px);
 
@@ -11,7 +11,6 @@ body {
 
   --tab-text-align: left;
 
-  --tab-text-color-focused: var(--text-faint);
   --tab-text-color-focused-active: var(--text-normal);
   --tab-text-color-focused-active-current: unset;
 }
@@ -102,6 +101,9 @@ body:not(.is-phone) .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
   .workspace-tab-header {
     padding: 0;
     background-color: var(--background-modifier-hover);
+  }
+  .workspace-tab-header:not(.is-active):not(:hover) {
+    opacity: 0.5;
   }
   .workspace-tab-header-inner {
     padding-inline-start: 12px;
@@ -207,8 +209,7 @@ body:not(.mod-macos):not(.is-mobile):not(.tab-floating) {
         padding-left: var(--tab-action-width);
       }
       // Left split pane & Non-top pane
-      &:is(.mod-root > .workspace-tabs):not(:only-of-type):first-of-type:not(.mod-top-left-space):not(.mod-top-right-space)
-        .workspace-tab-header-container-inner,
+      &:is(.mod-root > .workspace-tabs):not(:only-of-type):first-of-type:not(.mod-top-left-space):not(.mod-top-right-space) .workspace-tab-header-container-inner,
       &:not(.mod-top) .workspace-tab-header-container-inner {
         padding-left: calc(var(--tab-action-width) * 2);
       }
@@ -325,6 +326,9 @@ body.is-tablet .workspace .mod-root {
   }
   .workspace-tab-header.is-active:hover {
     background-color: inherit;
+  }
+  .workspace-tab-header:not(.is-active):not(:hover) {
+    opacity: 0.5;
   }
   .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
     background-color: inherit;

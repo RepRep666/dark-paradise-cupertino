@@ -11,10 +11,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
         0 0 2px rgba(0, 0, 0, 0.25),
         0 1px 4px rgba(0, 0, 0, 0.15);
       border-radius: 6px;
-      background-image: linear-gradient(
-        oklch(from var(--setting-nav-icon-background) calc(l * 1.125) c h),
-        oklch(from var(--setting-nav-icon-background) calc(l * 0.975) c h)
-      );
+      background-image: linear-gradient(oklch(from var(--setting-nav-icon-background) calc(l * 1.125) c h), oklch(from var(--setting-nav-icon-background) calc(l * 0.975) c h));
       background-color: var(--setting-nav-icon-background);
       padding: 4px;
       color: var(--setting-nav-icon-color, white);
@@ -22,10 +19,6 @@ body:is(.mod-macos, .adaptive-mode-off) {
 
     &[data-setting-id="canvas"] .vertical-tab-nav-item-icon {
       --setting-nav-icon-color: var(--color-red);
-      --setting-nav-icon-background: var(--color-base-10);
-    }
-    &[data-setting-id="community-plugins"] .vertical-tab-nav-item-icon {
-      --setting-nav-icon-color: var(--color-blue);
       --setting-nav-icon-background: var(--color-base-10);
     }
     &[data-setting-id="command-palette"] .vertical-tab-nav-item-icon {
@@ -43,10 +36,13 @@ body:is(.mod-macos, .adaptive-mode-off) {
 }
 
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
-  --settings-background: var(--background-primary);
-  --setting-items-padding-x: var(--side-padding);
-  --setting-items-padding-y: calc(12px * var(--density-modifier));
+  --setting-items-padding: calc(12px * var(--density-modifier)) var(--side-padding);
   --setting-group-heading-color: var(--text-normal);
+
+  .modal.mod-sidebar-layout {
+    background-color: var(--background-primary);
+    border: none;
+  }
 
   .modal.mod-settings {
     .vertical-tab-nav-item.is-active {
@@ -62,16 +58,25 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
       padding: 6px 8px;
     }
 
-    .vertical-tab-content {
-      animation: none;
-    }
-
     .setting-group-search + .setting-items {
       border-radius: var(--setting-items-radius);
     }
 
+    .setting-items .setting-item {
+      padding: 12px 0;
+    }
+    .setting-items .setting-item:first-child {
+      padding-top: 0;
+    }
+    .setting-items .setting-item:last-child {
+      padding-bottom: 0;
+    }
     .setting-item:not(.setting-item-heading, .setting-items .setting-item) {
-      padding: var(--setting-items-padding-y) var(--setting-items-padding-x);
+      padding: var(--setting-items-padding);
+    }
+
+    .installed-plugins-container .extra-setting-button {
+      min-width: unset;
     }
   }
 }
@@ -80,7 +85,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   .modal.mod-settings .vertical-tab-nav-item .vertical-tab-nav-item-icon {
     padding: 5px;
     border-radius: 8px;
-    box-shadow: 0 0 0 0.5pt var(--background-modifier-border);
+    box-shadow: 0 0 0 0.5px var(--background-modifier-border);
     margin-left: -4px;
   }
 }
@@ -96,7 +101,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
     .modal-setting-back-button {
       inset-inline-start: var(--safe-area-inset-side);
     }
-    .modal-header-button {
+    .modal-close-button {
       top: var(--safe-area-inset-side);
       inset-inline-end: var(--safe-area-inset-side) !important;
     }
@@ -108,9 +113,6 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
 
     .vertical-tab-nav-item {
       height: var(--touch-size-xl);
-    }
-    .vertical-tab-nav-item-title {
-      line-height: var(--touch-size-xl);
     }
   }
   .modal.mod-settings {
