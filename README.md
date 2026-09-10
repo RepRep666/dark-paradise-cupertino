@@ -3,7 +3,7 @@
 Here I go again with another Obsidian theme. I made this one because I wanted something purple that felt more like me. I used [Cupertino](https://github.com/aaaaalexis/obsidian-cupertino) by **aaaaalexis** as the base for its beautiful animations, then layered in my own color palette and visual direction: a cozy medieval violet theme with serif typography and a rounded Violet Codex reading surface.
 
 
-> This package is prepared for a future fork. It is not affiliated with Obsidian or the Cupertino maintainers.
+> This repository is a public fork and recolor of Cupertino. It is not affiliated with Obsidian or the Cupertino maintainers.
 
 ## Screenshots
 
@@ -65,7 +65,7 @@ The `desktop-dark.png` and `desktop-light.png` previews were captured from a sep
 
 ## Project status
 
-The theme is currently kept private while the fork package, metadata, and attribution are reviewed. No GitHub fork or public release has been created yet.
+The theme is now published as a public fork of Cupertino. It is not currently listed in Obsidian's Community Themes; future releases and changes will be tracked in this repository.
 
 ## License
 
