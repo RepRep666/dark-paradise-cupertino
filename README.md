@@ -63,10 +63,6 @@ The `desktop-dark.png` and `desktop-light.png` previews were captured from a sep
 - [Cupertino](https://github.com/aaaaalexis/obsidian-cupertino) by **aaaaalexis** — base layout, interactions, animations, mobile behavior, and source structure.
 - **Dark Paradise** by **Repo** — violet palette, cozy medieval art direction, typography, contrast tuning, mobile refinements, and Violet Codex framing.
 
-## Project status
-
-The theme is now published as a public fork of Cupertino. It is not currently listed in Obsidian's Community Themes; future releases and changes will be tracked in this repository.
-
 ## License
 
 MIT License. See [`LICENSE.txt`](LICENSE.txt). The original Cupertino copyright attribution is preserved there alongside attribution for this fork's modifications.
